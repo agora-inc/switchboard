@@ -2,11 +2,13 @@
 Description=switchboard
 
 [Service]
+User=ubuntu
 Type=simple
 Restart=always
 RestartSec=5s
-ExecStart=/home/pi/code/switchboard/switchboard
-WorkingDirectory=/home/pi/code/switchboard
+ExecStartPre=/bin/sh -c '/usr/local/go/bin/go build -buildvcs=false'
+ExecStart=/home/cloud-user/switchboard/switchboard
+WorkingDirectory=/home/cloud-user/switchboard/
 
 [Install]
 WantedBy=multi-user.target
